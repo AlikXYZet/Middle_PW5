@@ -1,54 +1,26 @@
-#include <fstream>
 #include <iostream>
+#include <string>
 
-int findFirstChar(const char* string, char ch)
-{
-	for (size_t i = 0; i < strlen(string); i++)
-		if (string[i] == ch)
-			return i;
-
-	return -1;
-}
-
-double divide(int a, int b)
-{
-	return static_cast<double>(a) / b;
-}
-
-double divide(int a, int b, bool& success)
-{
-	if (b == 0)
-	{
-		success = false;
-		return 0.0;
-	}
-
-	success = true;
-	return static_cast<double>(a) / b;
-}
 int main()
 {
-	bool success;
-	double result = divide(7, 4, success);
+	try
+	{
+		throw - 1;
+	}
+	catch (int a)
+	{
+		std::cerr << "We caught an int exception with value: " << a << '\n';
+	}
+	catch (double)
+	{
+		std::cerr << "We caught an exception of type double" << '\n';
+	}
+	catch (const std::string& str)
+	{
+		std::cerr << "We caught an exception of type std::string" << '\n';
+	}
 
-	if (!success)
-		std::cerr << "An error occurred" << std::endl;
-	else
-		std::cerr << "The answer is " << result << '\n';
+	std::cout << "Continuing our way!\n";
+
+	return 0;
 };
-
-{
-	std::ifstream setupIni("setup.ini");
-
-	if (!setupIni)
-		return ERROR_OPENING_FILE;
-
-	if (!readIntegerFromFile(setupIni, m_firstParameter))
-		return ERROR_READING_VALUE;
-
-	if (!readDoubleFromFile(setupIni, m_secondParameter))
-		return ERROR_READING_VALUE;
-
-	if (!readFloatFromFile(setupIni, m_thirdParameter))
-		return ERROR_READING_VALUE;
-}
