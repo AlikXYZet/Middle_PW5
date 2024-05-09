@@ -1,25 +1,29 @@
+#include <cmath>
 #include <iostream>
-#include <string>
+
+double mySqrt(double a)
+{
+	if (a < 0)
+		throw "Can not take sqrt of negative number";
+
+	return sqrt(a);
+}
 
 int main()
 {
+	std::cout << "Enter a number: ";
+	double a;
+	std::cin >> a;
+
 	try
 	{
-		try
-		{
-			throw - 1;
-		}
-		catch (const std::string& str)
-		{
-			std::cerr << "We caught an exception of type std::string" << '\n';
-		}
+		double d = mySqrt(a);
+		std::cout << "The sqrt of " << a << " is " << d << '\n';
 	}
-	catch (int a)
+	catch (const char* exception)
 	{
-		std::cerr << "We caught an int exception with value: " << a << '\n';
+		std::cerr << "Error: " << exception << std::endl;
 	}
-
-	std::cout << "Continuing our way!\n";
 
 	return 0;
 };
