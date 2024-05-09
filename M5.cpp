@@ -1,40 +1,46 @@
 #include <iostream>
+#include <exception>
+#include <string>
 
-class A
+class Fraction
 {
 private:
-	int m_x;
-
+	int numerator, denominator;
 public:
-	A(int x) : m_x(x)
+	Fraction(int a, int b)
+		: numerator(a), denominator(b)
 	{
-		if (x <= 0)
-			throw 1;
-	}
-};
-
-class B : public A
-{
-public:
-	B(int x) try : A(x)
-	{
-	}
-	catch (...)
-	{
-		std::cerr << "Construction of A failed\n";
+		if (denominator == 0)
+			throw std::runtime_error("Attempt to divide by zero!");
+		//numerator = a;
+		//denominator = b;
 	}
 
+	friend std::ostream& operator<<(std::ostream& out, const Fraction& f)
+	{
+		out << static_cast<double>(f.numerator) / f.denominator;;
+		return out;
+	}
 };
 
 int main()
 {
+	int inA, inB;
+	std::cout << "Enter the numerator and denominator numbers." << '\n';
+	std::cout << "Numerator: ";
+	std::cin >> inA;
+	std::cout << "Denominator: ";
+	std::cin >> inB;
+	std::cout << '\n';
+
 	try
 	{
-		B b(0);
+		Fraction fraction(inA, inB);
+		std::cout << "Calculated fraction: " << fraction << std::endl;
 	}
 	catch (std::exception& exception)
 	{
-		std::cout << "Oops!\n";
+		std::cerr << "Error: " << exception.what() << '\n';
 	}
 
 	return 0;
