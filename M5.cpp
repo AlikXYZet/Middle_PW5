@@ -15,7 +15,18 @@ int main()
 	double a;
 	std::cin >> a;
 
-	std::cout << "The sqrt of " << a << " is " << mySqrt(a) << '\n';
+	try
+	{
+		std::cout << "The sqrt of " << a << " is " << mySqrt(a) << '\n';
+	}
+	catch (double)
+	{
+		std::cerr << "Excrption caught in catch double" << '\n';
+	}
+	catch (...)
+	{
+		std::cerr << "Excrption caught in catch all" << '\n';
+	}
 
 	return 0;
 };
