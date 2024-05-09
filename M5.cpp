@@ -18,13 +18,13 @@ int main()
 	{
 		throw Child();
 	}
-	catch (Parent& parent)
-	{
-		std::cerr << "caugght Parent" << '\n';
-	}
 	catch (Child& child)
 	{
 		std::cerr << "caugght Child" << '\n';
+	}
+	catch (Parent& parent)
+	{
+		std::cerr << "caugght Parent" << '\n';
 	}
 
 	return 0;
