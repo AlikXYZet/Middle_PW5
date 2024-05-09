@@ -5,7 +5,7 @@ int main()
 {
 	try
 	{
-		throw - 1;
+		throw std::string("example");
 	}
 	catch (int a)
 	{
