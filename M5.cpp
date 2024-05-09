@@ -32,9 +32,9 @@ int main()
 	double result = divide(7, 4, success);
 
 	if (!success)
-		std::cerr << "" << std::endl;
+		std::cerr << "An error occurred" << std::endl;
 	else
-		std::cerr << "" << result << '\n';
+		std::cerr << "The answer is " << result << '\n';
 };
 
 {
