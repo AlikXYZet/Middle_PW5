@@ -1,30 +1,17 @@
 #include <iostream>
-
-class Parent
-{
-public:
-	Parent() {};
-};
-
-class Child : public Parent
-{
-public:
-	Child() {};
-};
+#include <exception>
+#include <string>
 
 int main()
 {
 	try
 	{
-		throw Child();
+		std::string s;
+		s.reserve(-1);
 	}
-	catch (Child& child)
+	catch (std::exception& exception)
 	{
-		std::cerr << "caugght Child" << '\n';
-	}
-	catch (Parent& parent)
-	{
-		std::cerr << "caugght Parent" << '\n';
+		std::cerr << "Standart exception: " << exception.what() << '\n';
 	}
 
 	return 0;
