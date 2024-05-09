@@ -6,8 +6,7 @@ int main()
 {
 	try
 	{
-		std::string s;
-		s.reserve(-1);
+		throw std::runtime_error("Bad things happened");
 	}
 	catch (std::exception& exception)
 	{
