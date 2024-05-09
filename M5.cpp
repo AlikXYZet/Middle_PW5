@@ -23,34 +23,58 @@ public:
 	}
 };
 
+// Проверка состояния флага пропуска "whitespace"
+// (после отладки удалить)
+void CheckSkipWS()
+{
+	std::cout << '\n' << bool(std::cin.flags() & std::ios_base::skipws) << '\n';
+}
+
 int main()
 {
 	int inA, inB;
 
-	std::cout << "Enter two integers to calculate division." << '\n';
+	std::cout << "Enter two integers to calculate division" << '\n';
 
 	try
 	{
-		// Переменные проверки вводимых данных
-		char checkA, checkB;
-		// Пропуск "whitespace" (пробелы, табы, символы новой строки)
-		std::cin.unsetf(std::ios_base::skipws);
+		// Область временного хранения переменных
+		{
+			// Переменные проверки вводимых данных
+			char checkA, checkB;
+			// Переменная флага пропуска "whitespace" (пробелы, табы, символы новой строки)
+			bool bCurrentSkipws = (std::cin.flags() & std::ios_base::skipws);
 
-		// Ввод inA
-		std::cout << "Numerator: ";
-		std::cin >> inA >> checkA;
+				//CheckSkipWS();
 
-		// Проверка корректного ввода inA
-		if (checkA != '\n')
-			throw std::exception("Invalid Numerator data");
+			// ВКЛ бита, если изначально был ОТКЛ
+			if (bCurrentSkipws)
+				std::cin.unsetf(std::ios_base::skipws);
 
-		// Ввод inB
-		std::cout << "Denominator: ";
-		std::cin >> inB >> checkB;
+				//CheckSkipWS();
 
-		// Проверка корректного ввода inB
-		if (checkB != '\n')
-			throw std::exception("Invalid Denominator data");
+			// Ввод inA
+			std::cout << "Numerator: ";
+			std::cin >> inA >> checkA;
+
+			// Проверка корректного ввода inA
+			if (checkA != '\n')
+				throw std::exception("Invalid Numerator data");
+
+			// Ввод inB
+			std::cout << "Denominator: ";
+			std::cin >> inB >> checkB;
+
+			// Проверка корректного ввода inB
+			if (checkB != '\n')
+				throw std::exception("Invalid Denominator data");
+
+			// ОТКЛ бита, если изначально был ОТКЛ
+			if (bCurrentSkipws)
+				std::cin.setf(std::ios_base::skipws);
+
+				//CheckSkipWS();
+		}
 
 		Fraction fraction(inA, inB);
 		std::cout << "\nCalculated fraction: " << fraction << std::endl;
