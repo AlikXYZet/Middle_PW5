@@ -23,13 +23,6 @@ public:
 	}
 };
 
-// Проверка состояния флага пропуска "whitespace"
-// (после отладки удалить)
-void CheckSkipWS()
-{
-	std::cout << '\n' << bool(std::cin.flags() & std::ios_base::skipws) << '\n';
-}
-
 int main()
 {
 	int inA, inB;
@@ -45,13 +38,9 @@ int main()
 			// Переменная флага пропуска "whitespace" (пробелы, табы, символы новой строки)
 			bool bCurrentSkipws = (std::cin.flags() & std::ios_base::skipws);
 
-				//CheckSkipWS();
-
 			// ВКЛ бита, если изначально был ОТКЛ
 			if (bCurrentSkipws)
 				std::cin.unsetf(std::ios_base::skipws);
-
-				//CheckSkipWS();
 
 			// Ввод inA
 			std::cout << "Numerator: ";
@@ -72,8 +61,6 @@ int main()
 			// ОТКЛ бита, если изначально был ОТКЛ
 			if (bCurrentSkipws)
 				std::cin.setf(std::ios_base::skipws);
-
-				//CheckSkipWS();
 		}
 
 		Fraction fraction(inA, inB);
