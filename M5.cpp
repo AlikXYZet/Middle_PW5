@@ -15,15 +15,7 @@ int main()
 	double a;
 	std::cin >> a;
 
-	try
-	{
-		double d = mySqrt(a);
-		std::cout << "The sqrt of " << a << " is " << d << '\n';
-	}
-	catch (const char* exception)
-	{
-		std::cerr << "Error: " << exception << std::endl;
-	}
+	std::cout << "The sqrt of " << a << " is " << mySqrt(a) << '\n';
 
 	return 0;
 };
