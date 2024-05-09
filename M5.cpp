@@ -1,31 +1,30 @@
-#include <cmath>
 #include <iostream>
 
-double mySqrt(double a)
+class Parent
 {
-	if (a < 0)
-		throw "Can not take sqrt of negative number";
+public:
+	Parent() {};
+};
 
-	return sqrt(a);
-}
+class Child : public Parent
+{
+public:
+	Child() {};
+};
 
 int main()
 {
-	std::cout << "Enter a number: ";
-	double a;
-	std::cin >> a;
-
 	try
 	{
-		std::cout << "The sqrt of " << a << " is " << mySqrt(a) << '\n';
+		throw Child();
 	}
-	catch (double)
+	catch (Parent& parent)
 	{
-		std::cerr << "Excrption caught in catch double" << '\n';
+		std::cerr << "caugght Parent" << '\n';
 	}
-	catch (...)
+	catch (Child& child)
 	{
-		std::cerr << "Excrption caught in catch all" << '\n';
+		std::cerr << "caugght Child" << '\n';
 	}
 
 	return 0;
