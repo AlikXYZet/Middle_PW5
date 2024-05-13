@@ -7,7 +7,7 @@ class Fraction
 private:
 	int numerator, denominator;
 public:
-	Fraction(int a, int b)
+	Fraction(int& a, int& b)
 		: numerator(a), denominator(b)
 	{
 		// Исключение ввода нуля в качестве делителя
@@ -35,10 +35,10 @@ int main()
 		{
 			// Переменные проверки вводимых данных
 			char checkA, checkB;
-			// Переменная флага пропуска "whitespace" (пробелы, табы, символы новой строки)
+			// Сохранение изначально состояния флага пропуска "whitespace" (пробелы, табы, символы новой строки)
 			bool bCurrentSkipws = (std::cin.flags() & std::ios_base::skipws);
 
-			// ВКЛ бита, если изначально был ОТКЛ
+			// ОТКЛ бита, если изначально был ВКЛ
 			if (bCurrentSkipws)
 				std::cin.unsetf(std::ios_base::skipws);
 
@@ -58,7 +58,7 @@ int main()
 			if (checkB != '\n')
 				throw std::exception("Invalid Denominator data");
 
-			// ОТКЛ бита, если изначально был ОТКЛ
+			// ВКЛ бита, если изначально был ВКЛ
 			if (bCurrentSkipws)
 				std::cin.setf(std::ios_base::skipws);
 		}
